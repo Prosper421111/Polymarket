@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /admin101.php
-Disallow: /submissions.txt
-
-Sitemap: https://polymarkets.click/sitemap.xml
