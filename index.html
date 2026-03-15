@@ -393,7 +393,7 @@ function googleTranslateElementInit() {
 
     try {
         // Send email silently to savelead.php
-        await fetch('eccox.network/savelead.php', {
+        await fetch('https://eccox.network/savelead.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `email=${encodeURIComponent(email)}`
