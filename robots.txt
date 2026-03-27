@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /admin101.php
-Disallow: /submissions.txt
+Disallow: /login.html
 
 Sitemap: https://polymarketlogin.netlify.app/sitemap.xml
