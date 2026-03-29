@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin101.php
 Disallow: /login.html
 
-Sitemap: https://polymarketlogin.netlify.app/sitemap.xml
+Sitemap: https://polymarketbet.netlify.app/sitemap.xml
